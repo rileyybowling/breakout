@@ -25,7 +25,7 @@ import GameplayKit
         makeBrick()
         makeLoseZone()
         ball.physicsBody?.isDynamic = true
-        ball.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 5)) 
+        ball.physicsBody?.applyImpulse(CGVector(dx: 3, dy: 5))
     }
     
     func createBackground() {
@@ -92,5 +92,19 @@ import GameplayKit
        loseZone.physicsBody = SKPhysicsBody(rectangleOf: loseZone.size)
        loseZone.physicsBody?.isDynamic = false
        addChild(loseZone)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+           let location = touch.location(in: self)
+           paddle.position.x = location.x
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+           let location = touch.location(in: self)
+           paddle.position.x = location.x
+        }
     }
 }
